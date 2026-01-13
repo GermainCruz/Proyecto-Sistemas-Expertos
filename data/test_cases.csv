@@ -1,0 +1,3 @@
+id,name,symptoms,expected_diagnosis,description,severity
+1,Gripe común,"fiebre,tos,dolor de cabeza,fatiga",Gripe,Caso típico de gripe estacional,moderada
+2,Gastritis aguda,"dolor abdominal,náuseas,acidez,pérdida de apetito",Gastritis,Gastritis por alimentos irritantes,moderada

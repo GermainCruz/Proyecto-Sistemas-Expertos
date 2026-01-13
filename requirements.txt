@@ -1,0 +1,5 @@
+# Dependencias del Sistema Experto
+# Instalar con: pip install -r requirements.txt
+
+streamlit>=1.28.0
+pandas>=2.0.0
