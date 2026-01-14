@@ -53,6 +53,22 @@ def load_symptoms_from_dataset():
                 key = f"❤️ {categoria}"
             elif "Dermatológicos" in categoria:
                 key = f"🧴 {categoria}"
+            elif "Genitourinarios" in categoria:
+                key = f"🚻 {categoria}"
+            elif "Oculares" in categoria:
+                key = f"👁️ {categoria}"
+            elif "Endocrinos" in categoria:
+                key = f"⚖️ {categoria}"
+            elif "Hematológicos" in categoria:
+                key = f"🩸 {categoria}"
+            elif "Psiquiátricos" in categoria or "Emocionales" in categoria:
+                key = f"🧠💭 {categoria}"
+            elif "Musculoesqueléticos" in categoria:
+                key = f"🦴 {categoria}"
+            elif "Inmunológicos" in categoria or "Alérgicos" in categoria:
+                key = f"🛡️ {categoria}"
+            elif "Infecciosos" in categoria:
+                key = f"🦠 {categoria}"
             else:
                 key = f"📋 {categoria}"
             
@@ -250,8 +266,8 @@ def main():
         layout="wide"
     )
 
-    st.title("🩺 Gestión de Síntomas")
-    st.info("Seleccione los síntomas para el diagnóstico. Los datos se cargan desde el dataset.")
+    st.title("🩺 GESTIÓN DE SÍNTOMAS")
+    st.info("Seleccione los síntomas para poder elaborar el diagnóstico...")
 
     selected = render_symptom_selector()
     st.markdown("---")

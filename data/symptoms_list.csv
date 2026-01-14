@@ -19,6 +19,37 @@ Síntomas Generales,Rigidez matutina
 Síntomas Generales,Pérdida de peso inexplicable
 Síntomas Generales,Fiebre intermitente
 Síntomas Generales,Sudoración excesiva
+Síntomas Generales,Linfadenopatía (ganglios inflamados)
+Síntomas Generales,Irritabilidad
+Síntomas Generales,Somnolencia diurna
+Síntomas Generales,Insomnio
+Síntomas Generales,Pérdida de peso repentina
+Síntomas Generales,Aumento de peso inexplicable
+Síntomas Generales,Temblores finos
+Síntomas Generales,Intolerancia al frío
+Síntomas Generales,Intolerancia al calor
+Síntomas Generales,Sed excesiva (polidipsia)
+Síntomas Generales,Hambre excesiva (polifagia)
+Síntomas Generales,Orina frecuente (poliuria)
+Síntomas Generales,Cansancio post-esfuerzo
+Síntomas Generales,Palidez generalizada
+Síntomas Generales,Ictericia leve
+Síntomas Generales,Edema generalizado
+Síntomas Generales,Fiebre recurrente
+Síntomas Generales,Síntomas gripales persistentes
+Síntomas Generales,Dolor óseo difuso
+Síntomas Generales,Hematomas espontáneos
+Síntomas Generales,Sangrado fácil
+Síntomas Generales,Adenopatías cervicales
+Síntomas Generales,Adenopatías axilares
+Síntomas Generales,Adenopatías inguinales
+Síntomas Generales,Escalofríos con fiebre
+Síntomas Generales,Sudoración fría
+Síntomas Generales,Desmayo previo
+Síntomas Generales,Síncope vasovagal
+Síntomas Generales,Ansiedad generalizada
+Síntomas Generales,Depresión persistente
+Síntomas Generales,Anhedonia
 Síntomas Respiratorios,Tos seca
 Síntomas Respiratorios,Tos con flema (productiva)
 Síntomas Respiratorios,Tos persistente
@@ -41,6 +72,24 @@ Síntomas Respiratorios,Tos con sangre (hemoptisis)
 Síntomas Respiratorios,Dolor torácico
 Síntomas Respiratorios,Respiración rápida (taquipnea)
 Síntomas Respiratorios,Silbidos al respirar
+Síntomas Respiratorios,Tos crónica (>8 semanas)
+Síntomas Respiratorios,Expectoración purulenta
+Síntomas Respiratorios,Dificultad para respirar al acostarse
+Síntomas Respiratorios,Ortopnea
+Síntomas Respiratorios,Disnea paroxística nocturna
+Síntomas Respiratorios,Asma inducida por ejercicio
+Síntomas Respiratorios,Rinitis alérgica
+Síntomas Respiratorios,Sinusitis aguda
+Síntomas Respiratorios,Sinusitis crónica
+Síntomas Respiratorios,Broncoespasmo
+Síntomas Respiratorios,Cianosis periférica
+Síntomas Respiratorios,Cianosis central
+Síntomas Respiratorios,Tos ferina
+Síntomas Respiratorios,Estridor
+Síntomas Respiratorios,Roncus
+Síntomas Respiratorios,Crepitaciones pulmonares
+Síntomas Respiratorios,Sibilancias bilaterales
+Síntomas Respiratorios,Dolor pleurítico
 Síntomas Digestivos,Dolor abdominal
 Síntomas Digestivos,Dolor abdominal agudo
 Síntomas Digestivos,Náuseas
@@ -63,6 +112,29 @@ Síntomas Digestivos,Dolor en la parte superior del abdomen
 Síntomas Digestivos,Dolor abdominal crónico
 Síntomas Digestivos,Sangre en las heces
 Síntomas Digestivos,Heces negras (melena)
+Síntomas Digestivos,Heces pálidas
+Síntomas Digestivos,Heces flotantes
+Síntomas Digestivos,Diarrea crónica
+Síntomas Digestivos,Estreñimiento crónico
+Síntomas Digestivos,Síndrome de intestino irritable
+Síntomas Digestivos,Dolor cólico
+Síntomas Digestivos,Meteorismo
+Síntomas Digestivos,Eructos frecuentes
+Síntomas Digestivos,Pérdida de grasa en heces (esteatorrea)
+Síntomas Digestivos,Dolor epigástrico
+Síntomas Digestivos,Dolor en cuadrante inferior derecho
+Síntomas Digestivos,Dolor en cuadrante superior derecho
+Síntomas Digestivos,Dolor periumbilical
+Síntomas Digestivos,Náuseas postprandiales
+Síntomas Digestivos,Vómitos biliosos
+Síntomas Digestivos,Distensión abdominal
+Síntomas Digestivos,Rigidez abdominal
+Síntomas Digestivos,Signo de Blumberg positivo
+Síntomas Digestivos,Reflujo gastroesofágico
+Síntomas Digestivos,Hipersalivación
+Síntomas Digestivos,Disfagia
+Síntomas Digestivos,Odinofagia
+Síntomas Digestivos,Halitosis persistente
 Síntomas Neurológicos,Mareos
 Síntomas Neurológicos,Vértigo
 Síntomas Neurológicos,Entumecimiento
@@ -78,6 +150,31 @@ Síntomas Neurológicos,Pérdida de memoria
 Síntomas Neurológicos,Confusión mental
 Síntomas Neurológicos,Dolor facial
 Síntomas Neurológicos,Zumbido en los oídos (tinnitus)
+Síntomas Neurológicos,Parestesias en extremidades
+Síntomas Neurológicos,Hemiparesia
+Síntomas Neurológicos,Hemiplejia
+Síntomas Neurológicos,Ataxia
+Síntomas Neurológicos,Nistagmo
+Síntomas Neurológicos,Afasia
+Síntomas Neurológicos,Disartria
+Síntomas Neurológicos,Amnesia anterógrada
+Síntomas Neurológicos,Amnesia retrógrada
+Síntomas Neurológicos,Cambios en el estado de conciencia
+Síntomas Neurológicos,Letargo
+Síntomas Neurológicos,Obnubilación
+Síntomas Neurológicos,Coma
+Síntomas Neurológicos,Crisis epilépticas focales
+Síntomas Neurológicos,Crisis epilépticas generalizadas
+Síntomas Neurológicos,Temblores esenciales
+Síntomas Neurológicos,Rigidez muscular
+Síntomas Neurológicos,Bradicinesia
+Síntomas Neurológicos,Tics faciales
+Síntomas Neurológicos,Parálisis de Bell
+Síntomas Neurológicos,Neuralgia del trigémino
+Síntomas Neurológicos,Cefalea en racimos
+Síntomas Neurológicos,Migraña con aura
+Síntomas Neurológicos,Migraña sin aura
+Síntomas Neurológicos,Cefalea tensional
 Síntomas Cardiovasculares,Dolor en el pecho
 Síntomas Cardiovasculares,Palpitaciones
 Síntomas Cardiovasculares,Ritmo cardíaco irregular
@@ -88,6 +185,23 @@ Síntomas Cardiovasculares,Coloración azulada en labios
 Síntomas Cardiovasculares,Fatiga al hacer ejercicio
 Síntomas Cardiovasculares,Dolor que irradia al brazo izquierdo
 Síntomas Cardiovasculares,Sudoración fría
+Síntomas Cardiovasculares,Disnea de esfuerzo
+Síntomas Cardiovasculares,Edema periférico
+Síntomas Cardiovasculares,Edema pulmonar agudo
+Síntomas Cardiovasculares,Taquicardia
+Síntomas Cardiovasculares,Bradycardia
+Síntomas Cardiovasculares,Arritmia auricular
+Síntomas Cardiovasculares,Fibrilación auricular
+Síntomas Cardiovasculares,Angina de pecho
+Síntomas Cardiovasculares,Infarto agudo de miocardio (sospecha)
+Síntomas Cardiovasculares,Claudicación intermitente
+Síntomas Cardiovasculares,Pulsos débiles en extremidades
+Síntomas Cardiovasculares,Cianosis acral
+Síntomas Cardiovasculares,Palpitaciones postprandiales
+Síntomas Cardiovasculares,Síncope cardíaco
+Síntomas Cardiovasculares,Presión arterial sistólica >180 mmHg
+Síntomas Cardiovasculares,Presión arterial diastólica >110 mmHg
+Síntomas Cardiovasculares,Hipotensión ortostática
 Síntomas Dermatológicos,Erupción cutánea
 Síntomas Dermatológicos,Picazón en la piel
 Síntomas Dermatológicos,Enrojecimiento de la piel
@@ -100,3 +214,141 @@ Síntomas Dermatológicos,Uñas quebradizas
 Síntomas Dermatológicos,Sudoración excesiva en manos
 Síntomas Dermatológicos,Acné severo
 Síntomas Dermatológicos,Piel amarillenta (ictericia)
+Síntomas Dermatológicos,Urticaria
+Síntomas Dermatológicos,Eczema
+Síntomas Dermatológicos,Psoriasis
+Síntomas Dermatológicos,Vitíligo
+Síntomas Dermatológicos,Lupus malar (eritema en alas de mariposa)
+Síntomas Dermatológicos,Prurito generalizado
+Síntomas Dermatológicos,Petequias
+Síntomas Dermatológicos,Equimosis
+Síntomas Dermatológicos,Púrpura
+Síntomas Dermatológicos,Vesículas
+Síntomas Dermatológicos,Ampollas
+Síntomas Dermatológicos,Crustas
+Síntomas Dermatológicos,Descamación
+Síntomas Dermatológicos,Liquenificación
+Síntomas Dermatológicos,Onicomicosis
+Síntomas Dermatológicos,Alopecia areata
+Síntomas Dermatológicos,Celulitis bacteriana
+Síntomas Dermatológicos,Eritema nodoso
+Síntomas Dermatológicos,Herpes zóster
+Síntomas Dermatológicos,Varicela
+Síntomas Dermatológicos,Sarpullido maculopapular
+Síntomas Genitourinarios,Dolor al orinar (disuria)
+Síntomas Genitourinarios,Ganas frecuentes de orinar
+Síntomas Genitourinarios,Orina escasa
+Síntomas Genitourinarios,Orina turbia
+Síntomas Genitourinarios,Orina con olor fuerte
+Síntomas Genitourinarios,Sangre en la orina (hematuria)
+Síntomas Genitourinarios,Dolor en la zona lumbar
+Síntomas Genitourinarios,Incontinencia urinaria
+Síntomas Genitourinarios,Retención urinaria
+Síntomas Genitourinarios,Secreción vaginal anormal
+Síntomas Genitourinarios,Secreción uretral en hombres
+Síntomas Genitourinarios,Dolor pélvico
+Síntomas Genitourinarios,Dolor testicular
+Síntomas Genitourinarios,Dolor escrotal
+Síntomas Genitourinarios,Dispareunia (dolor al tener relaciones)
+Síntomas Genitourinarios,Amenorrea
+Síntomas Genitourinarios,Menorragia
+Síntomas Genitourinarios,Metrorragia
+Síntomas Genitourinarios,Leucorrea
+Síntomas Genitourinarios,Prurito vulvar
+Síntomas Genitourinarios,Prurito escrotal
+Síntomas Genitourinarios,Úlceras genitales
+Síntomas Genitourinarios,Quistes ováricos sintomáticos
+Síntomas Genitourinarios,Hipertrofia prostática
+Síntomas Genitourinarios,Nocturia
+Síntomas Genitourinarios,Chorro urinario débil
+Síntomas Genitourinarios,Sensación de vaciamiento incompleto
+Síntomas Oculares,Visión borrosa
+Síntomas Oculares,Dolor ocular
+Síntomas Oculares,Ojos rojos
+Síntomas Oculares,Lagrimeo excesivo
+Síntomas Oculares,Sensibilidad a la luz (fotofobia)
+Síntomas Oculares,Visión doble
+Síntomas Oculares,Puntos negros en la visión (miodesopsias)
+Síntomas Oculares,Flashes luminosos
+Síntomas Oculares,Pérdida súbita de visión
+Síntomas Oculares,Pérdida progresiva de visión
+Síntomas Oculares,Visión de túnel
+Síntomas Oculares,Dificultad para ver de noche
+Síntomas Oculares,Párpados caídos (ptosis)
+Síntomas Oculares,Entropión
+Síntomas Oculares,Ectropión
+Síntomas Oculares,Conjuntivitis
+Síntomas Oculares,Orzuelo
+Síntomas Oculares,Chalazión
+Síntomas Oculares,Glaucoma agudo (sospecha)
+Síntomas Endocrinos,Sed excesiva
+Síntomas Endocrinos,Orina frecuente
+Síntomas Endocrinos,Pérdida de peso con polifagia
+Síntomas Endocrinos,Aumento de peso con fatiga
+Síntomas Endocrinos,Intolerancia al frío
+Síntomas Endocrinos,Intolerancia al calor
+Síntomas Endocrinos,Temblores finos
+Síntomas Endocrinos,Bocio visible
+Síntomas Endocrinos,Exoftalmos
+Síntomas Endocrinos,Piel seca y fría
+Síntomas Endocrinos,Piel húmeda y caliente
+Síntomas Endocrinos,Cambios en el ciclo menstrual
+Síntomas Endocrinos,Ginecomastia en hombres
+Síntomas Endocrinos,Hirsutismo
+Síntomas Endocrinos,Acanthosis nigricans
+Síntomas Hematológicos,Palidez
+Síntomas Hematológicos,Fatiga extrema
+Síntomas Hematológicos,Sangrado gingival
+Síntomas Hematológicos,Epistaxis frecuente
+Síntomas Hematológicos,Hematomas espontáneos
+Síntomas Hematológicos,Petequias generalizadas
+Síntomas Hematológicos,Adenopatías generalizadas
+Síntomas Hematológicos,Hepatoesplenomegalia
+Síntomas Hematológicos,Fiebre sin foco infeccioso
+Síntomas Hematológicos,Sudoración nocturna profusa
+Síntomas Psiquiátricos/Emocionales,Ansiedad intensa
+Síntomas Psiquiátricos/Emocionales,Ataques de pánico
+Síntomas Psiquiátricos/Emocionales,Tristeza persistente
+Síntomas Psiquiátricos/Emocionales,Irritabilidad extrema
+Síntomas Psiquiátricos/Emocionales,Insomnio crónico
+Síntomas Psiquiátricos/Emocionales,Hipersomnia
+Síntomas Psiquiátricos/Emocionales,Pensamientos suicidas
+Síntomas Psiquiátricos/Emocionales,Alucinaciones auditivas
+Síntomas Psiquiátricos/Emocionales,Alucinaciones visuales
+Síntomas Psiquiátricos/Emocionales,Delirios
+Síntomas Psiquiátricos/Emocionales,Aislamiento social
+Síntomas Psiquiátricos/Emocionales,Anhedonia
+Síntomas Psiquiátricos/Emocionales,Culpa excesiva
+Síntomas Psiquiátricos/Emocionales,Baja autoestima
+Síntomas Musculoesqueléticos,Dolor muscular localizado
+Síntomas Musculoesqueléticos,Dolor articular migratorio
+Síntomas Musculoesqueléticos,Hinchazón articular
+Síntomas Musculoesqueléticos,Calor articular
+Síntomas Musculoesqueléticos,Rojez articular
+Síntomas Musculoesqueléticos,Limitación del movimiento
+Síntomas Musculoesqueléticos,Créditos articulares
+Síntomas Musculoesqueléticos,Dolor lumbar
+Síntomas Musculoesqueléticos,Ciatalgia
+Síntomas Musculoesqueléticos,Contracturas musculares
+Síntomas Musculoesqueléticos,Calambres nocturnos
+Síntomas Musculoesqueléticos,Deformidades articulares
+Síntomas Musculoesqueléticos,Escoliosis dolorosa
+Síntomas Inmunológicos/Alérgicos,Reacciones alérgicas a medicamentos
+Síntomas Inmunológicos/Alérgicos,Urticaria crónica
+Síntomas Inmunológicos/Alérgicos,Angioedema
+Síntomas Inmunológicos/Alérgicos,Anafilaxia (antecedente)
+Síntomas Inmunológicos/Alérgicos,Rinitis alérgica persistente
+Síntomas Inmunológicos/Alérgicos,Asma alérgico
+Síntomas Inmunológicos/Alérgicos,Dermatitis de contacto
+Síntomas Inmunológicos/Alérgicos,Intolerancia alimentaria
+Síntomas Infecciosos Específicos,Fiebre tifoidea sospechosa
+Síntomas Infecciosos Específicos,Meningismo
+Síntomas Infecciosos Específicos,Rigidez de nuca
+Síntomas Infecciosos Específicos,Signo de Kernig positivo
+Síntomas Infecciosos Específicos,Signo de Brudzinski positivo
+Síntomas Infecciosos Específicos,Exantema máculo-papular generalizado
+Síntomas Infecciosos Específicos,Adenopatía cervical posterior
+Síntomas Infecciosos Específicos,Hepatomegalia infecciosa
+Síntomas Infecciosos Específicos,Esplenomegalia infecciosa
+Síntomas Infecciosos Específicos,Tos perruna
+Síntomas Infecciosos Específicos,Síndrome febril hemorrágico
