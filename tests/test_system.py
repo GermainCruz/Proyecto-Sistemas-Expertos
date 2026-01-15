@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 test_system.py
-Pruebas Unitarias del Sistema Experto
+Pruebas Unitarias del Sistema Experto.
 """
 
 import unittest
