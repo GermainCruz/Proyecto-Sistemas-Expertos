@@ -1,3 +1,31 @@
-id,name,symptoms,expected_diagnosis,description,severity
-1,Gripe común,"fiebre,tos,dolor de cabeza,fatiga",Gripe,Caso típico de gripe estacional,moderada
-2,Gastritis aguda,"dolor abdominal,náuseas,acidez,pérdida de apetito",Gastritis,Gastritis por alimentos irritantes,moderada
+caso_id,nombre_caso,sintomas,diagnostico_esperado,severidad,edad,sexo,descripcion_caso
+caso_001,Gripe Estacional Clásica,Fiebre alta (más de 38.5°C)|Tos seca|Dolores musculares (mialgia)|Fatiga extrema|Dolor de cabeza (cefalea)|Escalofríos,Gripe (Influenza),moderada,35,F,Paciente con síntomas gripales típicos de inicio súbito hace 2 días
+caso_002,Resfriado Común,Congestión nasal|Secreción nasal (rinorrea)|Estornudos frecuentes|Dolor de garganta|Tos leve,Resfriado Común,leve,28,M,Síntomas leves de vías respiratorias superiores sin fiebre
+caso_003,Gastroenteritis Aguda,Diarrea acuosa|Náuseas|Vómitos|Dolor abdominal|Fiebre baja (37.5°C - 38.5°C)|Debilidad general,Gastroenteritis,moderada,42,F,Cuadro gastrointestinal agudo con deshidratación leve
+caso_004,Migraña Severa,Dolor de cabeza (cefalea)|Náuseas|Vómitos|Visión borrosa|Mareos,Migraña,moderada-grave,31,F,Cefalea pulsátil intensa unilateral con fotofobia
+caso_005,Neumonía Bacteriana,Tos con flema (productiva)|Fiebre alta (más de 38.5°C)|Dificultad para respirar (disnea)|Dolor en el pecho al respirar|Escalofríos|Fatiga extrema,Neumonía,grave,68,M,Infección respiratoria baja con compromiso pulmonar bilateral
+caso_006,Crisis Asmática,Dificultad para respirar (disnea)|Silbidos al respirar|Opresión en el pecho|Tos persistente|Falta de aliento,Asma (Crisis),moderada-grave,25,M,Exacerbación de asma bronquial con broncoespasmo severo
+caso_007,Diabetes Tipo 2 Inicial,Sed intensa|Fatiga extrema|Visión borrosa|Pérdida de peso inexplicable|Maridos,Diabetes Tipo 2 (síntomas iniciales),moderada-grave,55,M,Hiperglucemia con síntomas metabólicos de 3 meses de evolución
+caso_008,Infarto Agudo Miocardio,Dolor en el pecho|Dolor que irradia al brazo izquierdo|Sudoración fría|Náuseas|Dificultad para respirar (disnea)|Palpitaciones,Infarto Agudo de Miocardio (sospecha),grave,62,M,EMERGENCIA - Dolor torácico opresivo con irradiación al brazo
+caso_009,Apendicitis Aguda,Dolor periumbilical que migra a cuadrante inferior derecho|Náuseas|Vómitos|Fiebre|Pérdida de apetito,Apendicitis Aguda,moderada-grave,22,F,Abdomen agudo quirúrgico con signo de Blumberg positivo
+caso_010,Meningitis Bacteriana,Fiebre alta (más de 38.5°C)|Dolor de cabeza (cefalea)|Rigidez de nuca|Fotofobia|Náuseas|Vómitos,Meningitis (sospecha),grave,19,M,EMERGENCIA - Síndrome meníngeo completo con signos de Kernig
+caso_011,Bronquitis Aguda,Tos persistente|Tos con flema (productiva)|Dolor torácico|Fatiga extrema|Fiebre baja (37.5°C - 38.5°C),Bronquitis Aguda,moderada,45,F,Tos productiva de 10 días post-infección viral
+caso_012,Sinusitis Aguda,Dolor sinusal|Presión facial|Congestión nasal|Secreción nasal espesa|Dolor de cabeza (cefalea),Sinusitis,moderada,38,M,Dolor facial maxilar con secreción purulenta
+caso_013,Faringitis Estreptocócica,Dolor de garganta intenso|Dolor al tragar|Enrojecimiento de garganta|Fiebre|Inflamación de ganglios,Faringitis (Dolor de garganta),leve-moderada,15,F,Odinofagia severa con exudado amigdalino
+caso_014,Reflujo Gastroesofágico,Acidez estomacal|Regurgitación ácida|Ardor estomacal|Dolor en el pecho|Tos seca nocturna,Reflujo Gastroesofágico (ERGE),moderada,50,M,Pirosis postprandial crónica con regurgitación ácida
+caso_015,Hipertensión Sintomática,Dolor de cabeza (cefalea)|Mareos|Visión borrosa|Fatiga|Palpitaciones,Hipertensión (sospecha),moderada-grave,58,M,Cefalea matutina con presión arterial 160/100 mmHg
+caso_016,Anemia Ferropénica,Fatiga extrema|Debilidad general|Mareos|Palidez|Dolor de cabeza (cefalea),Anemia (sospecha),moderada,33,F,Astenia progresiva con palidez de mucosas
+caso_017,Conjuntivitis Viral,Enrojecimiento ocular|Lagrimeo|Sensación de arena en ojos|Secreción ocular|Picazón en ojos,Conjuntivitis,leve,27,F,Ojo rojo bilateral con secreción acuosa
+caso_018,Cistitis Aguda,Dolor al orinar|Necesidad urgente de orinar|Orina turbia u oscura|Dolor en parte baja del abdomen,Cistitis (Infección Urinaria),moderada,29,F,Disuria y polaquiuria de 24 horas de evolución
+caso_019,Alergia Estacional,Estornudos frecuentes|Congestión nasal|Picazón en nariz y ojos|Lagrimeo|Tos seca,Alergia Estacional,leve-moderada,24,M,Rinitis alérgica estacional con conjuntivitis
+caso_020,Ansiedad Generalizada,Palpitaciones|Sudoración excesiva|Mareos|Dificultad para respirar|Tensión muscular,Ansiedad (manifestación física),moderada,32,F,Crisis de ansiedad con síntomas somáticos
+caso_021,Deshidratación Moderada,Sed intensa|Boca seca|Orina oscura|Mareos|Fatiga extrema,Deshidratación,moderada-grave,40,M,Pérdida de líquidos por ejercicio intenso sin reposición
+caso_022,Otitis Media,Dolor de cabeza (cefalea)|Dolor facial|Fiebre|Mareos|Pérdida temporal de audición,Otitis Media (Infección de oído),moderada,8,M,Otalgia unilateral con fiebre en niño
+caso_023,Amigdalitis Bacteriana,Dolor de garganta intenso|Dolor al tragar|Fiebre alta (más de 38.5°C)|Inflamación de ganglios|Fatiga extrema,Amigdalitis,moderada,17,F,Odinofagia severa con placas purulentas amigdalinas
+caso_024,Úlcera Gástrica,Dolor en la parte superior del abdomen|Ardor estomacal|Náuseas|Sensación de plenitud,Úlcera Gástrica,moderada-grave,52,M,Dolor epigástrico en ayunas que mejora con alimentos
+caso_025,Hipotiroidismo,Fatiga extrema|Pérdida de cabello|Piel seca|Sensación de frío constante|Estreñimiento,Hipotiroidismo (sospecha),moderada,44,F,Astenia y aumento de peso con intolerancia al frío
+caso_026,Dermatitis Contacto,Erupción cutánea|Picazón en la piel|Enrojecimiento de la piel|Hinchazón de la piel,Dermatitis de Contacto,leve-moderada,36,F,Eritema y prurito en manos tras contacto con químicos
+caso_027,Insomnio Crónico,Fatiga extrema|Dolor de cabeza (cefalea)|Dificultad para concentrarse|Irritabilidad|Tensión muscular,Insomnio Crónico,moderada,41,F,Dificultad para conciliar sueño de 2 meses
+caso_028,Hipertiroidismo,Palpitaciones|Sudoración excesiva|Pérdida de peso inexplicable|Temblores|Nerviosismo,Hipertiroidismo (sospecha),moderada-grave,34,F,Taquicardia y pérdida de peso con intolerancia al calor
+caso_029,Angina de Pecho,Dolor en el pecho|Presión en el pecho|Dolor que irradia al brazo izquierdo|Disnea de esfuerzo,Angina de Pecho (sospecha),moderada-grave,65,M,Dolor torácico opresivo con el esfuerzo
+caso_030,ACV Isquémico,Debilidad muscular|Confusión mental|Dificultad para hablar|Pérdida de equilibrio|Visión borrosa,Accidente Cerebrovascular (ACV - sospecha),grave,72,M,EMERGENCIA - Hemiparesia súbita con afasia
