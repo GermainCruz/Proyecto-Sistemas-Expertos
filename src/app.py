@@ -205,14 +205,14 @@ def generate_diagnosis_hash(disease, confidence, timestamp):
     return hashlib.md5(data.encode()).hexdigest()[:8]
 
 
-def display_diagnosis_result(result, rank):
+def display_diagnosis_result(result, rank, context="main"):
     """Muestra un resultado de diagnóstico de forma atractiva - VERSIÓN MEJORADA"""
     confidence = result.get('final_confidence', result.get('confidence', 0))
     disease = result['disease']
 
-    # Crear un ID único para este diagnóstico
+    # Crear un ID único para este diagnóstico (incluyendo contexto para evitar duplicados)
     from hashlib import md5
-    unique_id = md5(f"{disease}_{confidence}_{rank}".encode()).hexdigest()[:8]
+    unique_id = md5(f"{disease}_{confidence}_{rank}_{context}".encode()).hexdigest()[:8]
 
     # Determinar color según confianza
     if confidence >= 0.8:
@@ -306,6 +306,7 @@ def display_diagnosis_result(result, rank):
                     'rank': rank,
                     'data': result
                 }
+                st.rerun()
 
 # ====================================
 # FUNCIONES PARA PDF - VERSIÓN SIMPLIFICADA Y ROBUSTA
@@ -956,6 +957,12 @@ def page_home():
         st.markdown("---")
         if st.button("🔍 Realizar Diagnóstico", type="primary", use_container_width=True, key="run_diagnosis"):
             with st.spinner("🔄 Procesando diagnóstico..."):
+                # Limpiar estado previo
+                if 'save_requested' in st.session_state:
+                    st.session_state.save_requested = {}
+                if 'button_counter' in st.session_state:
+                    st.session_state.button_counter = 0
+
                 # Realizar diagnóstico
                 results = diagnose(selected_symptoms, method)
                 st.session_state.diagnosis_results = results
@@ -967,304 +974,218 @@ def page_home():
                 st.session_state.pdf_bytes = None
                 st.session_state.show_pdf_section = True
 
-                # Mostrar resultados
                 if results:
                     st.success(f"✅ Diagnóstico completado. Se encontraron {len(results)} posibles condiciones.")
-
-                    st.markdown("---")
-                    st.markdown("## 📊 Resultados del Diagnóstico")
-
-                    # Mostrar top N resultados
-                    for i, result in enumerate(results[:top_n], 1):
-                        display_diagnosis_result(result, i)
-
-                    # Estadísticas
-                    st.markdown("---")
-                    st.markdown("### 📈 Estadísticas del Diagnóstico")
-
-                    col1, col2, col3, col4 = st.columns(4)
-
-                    with col1:
-                        st.metric("Total Diagnósticos", len(results))
-                    with col2:
-                        avg_conf = sum(r.get('final_confidence', r.get('confidence', 0)) for r in results[:5]) / min(5,
-                                                                                                                     len(results))
-                        st.metric("Confianza Promedio (Top 5)", f"{avg_conf * 100:.1f}%")
-                    with col3:
-                        categories = set(r['category'] for r in results[:top_n])
-                        st.metric("Categorías Afectadas", len(categories))
-                    with col4:
-                        severe_count = sum(1 for r in results[:top_n] if 'grave' in str(r.get('severity', '')).lower())
-                        st.metric("Condiciones Graves", severe_count)
-
                 else:
                     st.warning("⚠️ No se encontraron diagnósticos que coincidan con los síntomas seleccionados.")
                     st.info("💡 Intente agregar más síntomas o consulte directamente con un profesional de la salud.")
     else:
         st.warning("⚠️ Por favor, seleccione al menos un síntoma para continuar.")
 
-        # Render persistente de resultados tras diagnóstico
+    # ==================================================================
+    # MOSTRAR RESULTADOS (SE MUESTRAN SIEMPRE QUE EXISTAN)
+    # ==================================================================
     if st.session_state.get('diagnosis_results'):
+        results = st.session_state.diagnosis_results
         curr_top_n = st.session_state.get('top_n', 5)
+        method = st.session_state.get('diagnosis_method', 'hybrid')
 
         st.markdown("---")
         st.markdown("## 📊 Resultados del Diagnóstico")
 
-        for i, result in enumerate(st.session_state.diagnosis_results[:curr_top_n], 1):
+        # Mostrar resultados
+        for i, result in enumerate(results[:curr_top_n], 1):
             display_diagnosis_result(result, i)
 
+        # Estadísticas
         st.markdown("---")
         st.markdown("### 📈 Estadísticas del Diagnóstico")
+
         col1, col2, col3, col4 = st.columns(4)
         with col1:
-            st.metric("Total Diagnósticos", len(st.session_state.diagnosis_results))
+            st.metric("Total Diagnósticos", len(results))
         with col2:
-            avg_conf = sum(
-                r.get('final_confidence', r.get('confidence', 0))
-                for r in st.session_state.diagnosis_results[:5]
-            ) / min(5, len(st.session_state.diagnosis_results))
+            avg_conf = sum(r.get('final_confidence', r.get('confidence', 0)) for r in results[:5]) / min(5,
+                                                                                                         len(results))
             st.metric("Confianza Promedio (Top 5)", f"{avg_conf * 100:.1f}%")
         with col3:
-            categories = set(r['category'] for r in st.session_state.diagnosis_results[:curr_top_n])
+            categories = set(r['category'] for r in results[:curr_top_n])
             st.metric("Categorías Afectadas", len(categories))
         with col4:
-            severe_count = sum(
-                1 for r in st.session_state.diagnosis_results[:curr_top_n]
-                if 'grave' in str(r.get('severity', '')).lower()
-            )
+            severe_count = sum(1 for r in results[:curr_top_n] if 'grave' in str(r.get('severity', '')).lower())
             st.metric("Condiciones Graves", severe_count)
 
-    # Sección PDF (solo se muestra si hay resultados)
-    if st.session_state.get('show_pdf_section', False) and st.session_state.diagnosis_results:
-        st.markdown("---")
-        st.markdown("### 📄 Reporte de Diagnóstico")
+        # ============================================
+        # SECCIÓN PDF
+        # ============================================
+        if st.session_state.get('show_pdf_section', False):
+            st.markdown("---")
+            st.markdown("### 📄 Reporte de Diagnóstico")
 
-        # Generar PDF si aún no se ha generado
-        if not st.session_state.pdf_generated:
-            with st.spinner("Generando reporte PDF..."):
-                try:
-                    pdf_bytes = build_pdf_report(
-                        st.session_state.selected_symptoms,
-                        st.session_state.diagnosis_results,
-                        st.session_state.diagnosis_method,
-                        top_n=top_n
-                    )
-                    if pdf_bytes and len(pdf_bytes) > 100:  # Verificar que no esté vacío
-                        safe_bytes = convert_to_bytes(pdf_bytes)
-                        st.session_state.pdf_bytes = safe_bytes
-                        st.session_state.pdf_generated = True
-                        st.session_state.pdf_filename = f"diagnostico_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
-                        st.success("✅ PDF generado correctamente!")
-                    else:
-                        # Si el PDF está vacío o corrupto, generar uno simple
+            # Generar PDF si aún no se ha generado
+            if not st.session_state.get('pdf_generated', False):
+                with st.spinner("Generando reporte PDF..."):
+                    try:
+                        pdf_bytes = build_pdf_report(
+                            st.session_state.selected_symptoms,
+                            results,
+                            method,
+                            top_n=curr_top_n
+                        )
+                        if pdf_bytes and len(pdf_bytes) > 100:
+                            safe_bytes = convert_to_bytes(pdf_bytes)
+                            st.session_state.pdf_bytes = safe_bytes
+                            st.session_state.pdf_generated = True
+                            st.session_state.pdf_filename = f"diagnostico_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+                            st.success("✅ PDF generado correctamente!")
+                        else:
+                            pdf_bytes = create_simple_fallback_pdf(
+                                st.session_state.selected_symptoms,
+                                results,
+                                method
+                            )
+                            safe_bytes = convert_to_bytes(pdf_bytes)
+                            st.session_state.pdf_bytes = safe_bytes
+                            st.session_state.pdf_generated = True
+                            st.session_state.pdf_filename = f"diagnostico_simple_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+                            st.info("📄 Se generó un PDF simple")
+                    except Exception as e:
+                        st.error(f"❌ Error: {str(e)}")
                         pdf_bytes = create_simple_fallback_pdf(
                             st.session_state.selected_symptoms,
-                            st.session_state.diagnosis_results,
-                            st.session_state.diagnosis_method
+                            results,
+                            method
                         )
                         safe_bytes = convert_to_bytes(pdf_bytes)
                         st.session_state.pdf_bytes = safe_bytes
                         st.session_state.pdf_generated = True
-                        st.session_state.pdf_filename = f"diagnostico_simple_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
-                        st.info("📄 Se generó un PDF simple")
-                except Exception as e:
-                    st.error(f"❌ Error crítico: {str(e)}")
-                    # Último intento con PDF mínimo
-                    pdf_bytes = create_simple_fallback_pdf(
-                        st.session_state.selected_symptoms,
-                        st.session_state.diagnosis_results,
-                        st.session_state.diagnosis_method
+                        st.session_state.pdf_filename = f"diagnostico_minimo_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+                        st.warning("⚠️ Se generó un PDF mínimo")
+
+            # Mostrar opciones de PDF
+            if st.session_state.get('pdf_generated', False) and st.session_state.get('pdf_bytes'):
+                col1, col2 = st.columns([1, 1])
+
+                with col1:
+                    if st.button("🔄 Regenerar PDF", use_container_width=True, key="regenerate_pdf"):
+                        with st.spinner("Regenerando PDF..."):
+                            try:
+                                pdf_bytes = build_pdf_report(
+                                    st.session_state.selected_symptoms,
+                                    results,
+                                    method,
+                                    top_n=curr_top_n
+                                )
+                                if pdf_bytes:
+                                    safe_bytes = convert_to_bytes(pdf_bytes)
+                                    st.session_state.pdf_bytes = safe_bytes
+                                    st.session_state.pdf_filename = f"diagnostico_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+                                    st.success("✅ PDF regenerado!")
+                            except:
+                                st.error("❌ No se pudo regenerar el PDF")
+
+                with col2:
+                    safe_bytes = convert_to_bytes(st.session_state.pdf_bytes)
+                    st.download_button(
+                        label="⬇️ Descargar PDF",
+                        data=safe_bytes,
+                        file_name=st.session_state.pdf_filename,
+                        mime="application/pdf",
+                        use_container_width=True,
+                        type="primary",
+                        key="download_pdf_main"
                     )
-                    safe_bytes = convert_to_bytes(pdf_bytes)
-                    st.session_state.pdf_bytes = safe_bytes
-                    st.session_state.pdf_generated = True
-                    st.session_state.pdf_filename = f"diagnostico_minimo_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
-                    st.warning("⚠️ Se generó un PDF mínimo debido a errores")
 
-        # Mostrar opciones de PDF
-        if st.session_state.pdf_generated and st.session_state.pdf_bytes:
-            col1, col2 = st.columns([1, 1])
+                # Otras opciones de exportación
+                st.markdown("---")
+                with st.expander("🌐 Otras opciones de exportación", expanded=False):
+                    col_alt1, col_alt2 = st.columns(2)
 
-            with col1:
-                # Botón para regenerar
-                if st.button("🔄 Regenerar PDF", use_container_width=True, key="regenerate_pdf"):
-                    with st.spinner("Regenerando PDF..."):
+                    with col_alt1:
                         try:
-                            pdf_bytes = build_pdf_report(
+                            html_report = generate_html_report(
                                 st.session_state.selected_symptoms,
-                                st.session_state.diagnosis_results,
-                                st.session_state.diagnosis_method,
-                                top_n=top_n
+                                results,
+                                method,
+                                top_n=curr_top_n
                             )
-                            if pdf_bytes:
-                                safe_bytes = convert_to_bytes(pdf_bytes)
-                                st.session_state.pdf_bytes = safe_bytes
-                                st.session_state.pdf_filename = f"diagnostico_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
-                                st.success("✅ PDF regenerado correctamente!")
-                        except:
-                            st.error("❌ No se pudo regenerar el PDF")
+                            st.download_button(
+                                "📊 Descargar HTML",
+                                data=html_report,
+                                file_name=f"reporte_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html",
+                                mime="text/html",
+                                use_container_width=True,
+                                key="download_html"
+                            )
+                        except Exception as e:
+                            st.error(f"Error HTML: {str(e)}")
 
-            with col2:
-                # Botón de descarga
-                safe_bytes = convert_to_bytes(st.session_state.pdf_bytes)
-                st.download_button(
-                    label="⬇️ Descargar PDF",
-                    data=safe_bytes,
-                    file_name=st.session_state.pdf_filename,
-                    mime="application/pdf",
-                    use_container_width=True,
-                    type="primary",
-                    key="download_pdf_main"
-                )
-
-            # Opciones alternativas
-            st.markdown("---")
-            with st.expander("🌐 Otras opciones de exportación", expanded=False):
-                col_alt1, col_alt2 = st.columns(2)
-
-                with col_alt1:
-                    # Reporte HTML
-                    try:
-                        html_report = generate_html_report(
-                            st.session_state.selected_symptoms,
-                            st.session_state.diagnosis_results,
-                            st.session_state.diagnosis_method,
-                            top_n=top_n
-                        )
-                        st.download_button(
-                            "📊 Descargar HTML",
-                            data=html_report,
-                            file_name=f"reporte_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html",
-                            mime="text/html",
-                            use_container_width=True,
-                            key="download_html"
-                        )
-                    except Exception as e:
-                        st.error(f"Error HTML: {str(e)}")
-
-                with col_alt2:
-                    # Limpiar sección PDF
-                    if st.button("🗑️ Ocultar sección PDF", use_container_width=True, key="hide_pdf"):
-                        st.session_state.show_pdf_section = False
-        else:
-            if not st.session_state.pdf_generated:
-                st.warning("⚠️ El PDF no se ha generado. Intente nuevamente.")
+                    with col_alt2:
+                        if st.button("🗑️ Ocultar sección PDF", use_container_width=True, key="hide_pdf"):
+                            st.session_state.show_pdf_section = False
 
     # ============================================
-    # SECCIÓN DE CONFIRMACIÓN DE GUARDADO EN HISTORIAL
+    # SECCIÓN DE GUARDADO EN HISTORIAL
     # ============================================
+    pending_count = len(st.session_state.get('save_requested', {}))
 
-    # Solo mostrar si hay diagnósticos pendientes de guardar
-    if st.session_state.get('save_confirmed', False) and st.session_state.pending_saves:
+    if pending_count > 0:
         st.markdown("---")
-        st.markdown("### 💾 Confirmar Guardado en Historial")
-        st.markdown("Los siguientes diagnósticos están listos para guardar:")
+        st.markdown(f"### 💾 Tienes {pending_count} diagnóstico(s) pendiente(s)")
 
-        # Mostrar lista de diagnósticos pendientes
-        for i, pending in enumerate(st.session_state.pending_saves, 1):
-            st.info(f"**{i}.** {pending['disease']} - {pending['confidence'] * 100:.1f}% de confianza")
+        # Mostrar lista de pendientes
+        for uid, request in st.session_state.save_requested.items():
+            disease = request['disease']
+            confidence = request['confidence'] * 100
+            rank = request.get('rank', 0)
+            st.info(f"• **{disease}** - {confidence:.1f}% de confianza (Rank #{rank})")
 
-        # Botones de confirmación
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("✅ Confirmar y Guardar Todo", type="primary", key="confirm_save_all"):
+        col_save_all, col_cancel_all = st.columns(2)
+
+        with col_save_all:
+            if st.button("💾 **Guardar Todos**", type="primary", use_container_width=True, key="save_all_button"):
                 saved_count = 0
-                for pending in st.session_state.pending_saves:
-                    # Verificar si ya existe en el historial
-                    already_exists = False
-                    for existing in st.session_state.diagnosis_history:
-                        if (existing['disease'] == pending['disease'] and
-                                abs(existing['confidence'] - pending['confidence']) < 0.01):
-                            already_exists = True
-                            break
+                for uid, request in list(st.session_state.save_requested.items()):
+                    exists = any(
+                        h['disease'] == request['disease'] and
+                        abs(h['confidence'] - request['confidence']) < 0.01
+                        for h in st.session_state.diagnosis_history
+                    )
 
-                    if not already_exists:
+                    if not exists:
                         st.session_state.last_diagnosis_id += 1
                         st.session_state.diagnosis_history.append({
                             'id': st.session_state.last_diagnosis_id,
-                            **pending,
-                            'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                            'disease': request['disease'],
+                            'confidence': request['confidence'],
+                            'symptoms': request['data']['matched_symptoms'],
+                            'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                            'category': request['data'].get('category', 'N/A'),
+                            'severity': request['data'].get('severity', 'N/A'),
+                            'description': request['data'].get('description', ''),
+                            'rank': request['rank']
                         })
                         saved_count += 1
 
-                st.success(f"✅ {saved_count} diagnóstico(s) guardado(s) en el historial!")
+                    del st.session_state.save_requested[uid]
 
-                # Limpiar pendientes
-                st.session_state.pending_saves = []
-                st.session_state.save_confirmed = False
-
-                # Pequeña pausa y actualizar
+                st.session_state.just_saved = True
+                st.success(f"✅ **{saved_count} diagnóstico(s) guardado(s)**")
                 time.sleep(1)
                 st.rerun()
 
-        with col2:
-            if st.button("❌ Cancelar", key="cancel_save_all"):
-                st.session_state.pending_saves = []
-                st.session_state.save_confirmed = False
-                st.info("❌ Guardado cancelado")
+        with col_cancel_all:
+            if st.button("🗑️ **Cancelar Todos**", type="secondary", use_container_width=True,
+                         key="cancel_all_button"):
+                st.session_state.save_requested = {}
+                st.info("❌ **Todos los pendientes cancelados**")
+                time.sleep(1)
                 st.rerun()
 
-        st.markdown("---")
-        # Mostrar mensaje si se acaba de guardar algo
-        if st.session_state.get('just_saved', False):
-            st.success("🎉 **¡Diagnóstico guardado exitosamente!** Ve a la página de 📜 Historial para verlo.")
-            st.session_state.just_saved = False
-
-        # Mostrar botón para guardar todos si hay muchos pendientes
-        pending_count = len(st.session_state.save_requested)
-        if pending_count > 0:
-            st.markdown("---")
-            st.markdown(f"### 💾 Tienes {pending_count} diagnóstico(s) pendiente(s)")
-
-            # Mostrar lista de pendientes
-            for uid, request in st.session_state.save_requested.items():
-                disease = request['disease']
-                confidence = request['confidence'] * 100
-                st.info(f"• **{disease}** - {confidence:.1f}% de confianza")
-
-            col_save_all, col_cancel_all = st.columns(2)
-
-            with col_save_all:
-                if st.button("💾 **Guardar Todos**", type="primary", use_container_width=True, key="save_all_button"):
-                    saved_count = 0
-                    for uid, request in list(st.session_state.save_requested.items()):
-                        # Verificar que no exista ya
-                        exists = any(
-                            h['disease'] == request['disease'] and
-                            abs(h['confidence'] - request['confidence']) < 0.01
-                            for h in st.session_state.diagnosis_history
-                        )
-
-                        if not exists:
-                            st.session_state.last_diagnosis_id += 1
-                            st.session_state.diagnosis_history.append({
-                                'id': st.session_state.last_diagnosis_id,
-                                'disease': request['disease'],
-                                'confidence': request['confidence'],
-                                'symptoms': request['data']['matched_symptoms'],
-                                'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                                'category': request['data'].get('category', 'N/A'),
-                                'severity': request['data'].get('severity', 'N/A'),
-                                'description': request['data'].get('description', ''),
-                                'rank': request['rank']
-                            })
-                            saved_count += 1
-
-                        # Eliminar de pendientes
-                        del st.session_state.save_requested[uid]
-
-                    st.session_state.just_saved = True
-                    st.success(f"✅ **{saved_count} diagnóstico(s) guardado(s)**")
-                    time.sleep(1)
-                    st.rerun()
-
-            with col_cancel_all:
-                if st.button("🗑️ **Cancelar Todos**", type="secondary", use_container_width=True,
-                             key="cancel_all_button"):
-                    st.session_state.save_requested = {}
-                    st.info("❌ **Todos los pendientes cancelados**")
-                    time.sleep(1)
-                    st.rerun()
+    # Mostrar mensaje si se acaba de guardar algo
+    if st.session_state.get('just_saved', False):
+        st.success("🎉 **¡Diagnóstico guardado exitosamente!** Ve a la página de 📜 Historial para verlo.")
+        st.session_state.just_saved = False
 
 def page_knowledge_base():
     """Página de exploración de la base de conocimiento"""
